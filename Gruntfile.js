@@ -115,12 +115,17 @@ module.exports = function (grunt) {
     includeSource: {
       options: {
         basePath: 'app',
-        baseUrl: 'scripts/',
+        baseUrl: './',
         templates: {
           html: {
             js: '<script src="{filePath}"></script>'
           },
         },
+      },
+      server:{
+        files:{
+          "app/index.html": "app/index.html"
+        }
       }
     },
 
