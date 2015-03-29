@@ -1,7 +1,40 @@
 <div layout="row" layout-margin layout-padding layout-fill>
   <div class="tab-container" flex="75">
 	
-	<div class="card-row1" layout="row" layout-margin layout-wrap>
+	
+	<md-tabs md-selected="selectedIndex">
+		<md-tab md-on-select="ctrl.onTabSelected()">
+			<md-tab-label>
+				{{ctrl.tabs[0].title}}
+			</md-tab-label>
+			<section>
+				<div class="card-row1" layout="row" layout-margin layout-wrap>
+					<div class="card" flex></div>
+					<div class="card" flex></div>
+					<div class="card" flex></div>
+					<div class="card" flex></div>
+				</div>
+				<div class="card-row1" layout="row" layout-margin layout-wrap>
+					<div class="card" flex></div>
+					<div class="card" flex></div>
+					<div class="card" flex></div>
+					<div class="card" flex></div>
+				</div>
+
+			</section>
+		</md-tab>
+		<md-tab md-on-select="ctrl.onTabSelected()">
+			<md-tab-label>
+				{{ctrl.tabs[1].title}}
+			</md-tab-label>
+			<section>
+				This is the content of tab2
+			</section>
+		</md-tab>
+
+	</md-tabs>
+
+	<!-- <div class="card-row1" layout="row" layout-margin layout-wrap>
 		<div class="card" flex></div>
 		<div class="card" flex></div>
 		<div class="card" flex></div>
@@ -15,7 +48,7 @@
 		<div class="card" flex></div>
 	</div>
 	
-	<div class="card-row2"></div>
+	<div class="card-row2"></div> -->
 
   </div>
 
