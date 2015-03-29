@@ -128,3 +128,23 @@ span.name {
   font-size:1.1em;
   padding-left:5px;
 }
+
+
+/*customized*/
+.tab-container{
+  background-color: grey;
+}
+
+.card-list{
+  background-color: green;
+}
+
+.card{
+  background-color: blue;
+  height: 250px;
+}
+
+
+
+
+
