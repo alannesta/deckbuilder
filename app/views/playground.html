@@ -2,26 +2,35 @@
   <div class="tab-container" flex="75">
 	
 	
-	<md-tabs md-selected="selectedIndex">
+	<md-tabs md-selected="ctrl.selectedIndex">
 		<md-tab md-on-select="ctrl.onTabSelected()">
 			<md-tab-label>
 				{{ctrl.tabs[0].title}}
 			</md-tab-label>
-			<section>
-				<div class="card-row1" layout="row" layout-margin layout-wrap>
-					<div class="card" flex></div>
-					<div class="card" flex></div>
-					<div class="card" flex></div>
-					<div class="card" flex></div>
-				</div>
-				<div class="card-row1" layout="row" layout-margin layout-wrap>
-					<div class="card" flex></div>
-					<div class="card" flex></div>
-					<div class="card" flex></div>
-					<div class="card" flex></div>
-				</div>
+			<md-tab-template>
+				<!-- <section>
+					<div class="card-row1" layout="row" layout-margin layout-wrap>
+						<div class="card" flex></div>
+						<div class="card" flex></div>
+						<div class="card" flex></div>
+						<div class="card" flex></div>
+					</div>
+					<div class="card-row1" layout="row" layout-margin layout-wrap>
+						<div class="card" flex></div>
+						<div class="card" flex></div>
+						<div class="card" flex></div>
+						<div class="card" flex></div>
+					</div>
+				</section> -->
+				
+				<md-list layout="row" layout-padding layout-wrap>
+					<md-item class="card" ng-repeat = "card in ctrl.cards" flex="25">
+						
+					</md-item>
+				</md-list>
 
-			</section>
+			</md-tab-template>
+			
 		</md-tab>
 		<md-tab md-on-select="ctrl.onTabSelected()">
 			<md-tab-label>

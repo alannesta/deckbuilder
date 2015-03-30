@@ -41,6 +41,7 @@
     <script src="scripts/users/UserController.js"></script>
     <script src="scripts/users/UserService.js"></script>
     <script src="scripts/PlaygroundController.js"></script>
+    <script src="scripts/UploadController.js"></script>
     
 
     <script type="text/javascript">
@@ -70,6 +71,10 @@
                   .when('/playground',{
                     templateUrl: 'views/playground.html',
                     controller: 'PlaygroundController as ctrl'
+                  })
+                  .when('/upload', {
+                    templateUrl: 'views/upload.html',
+                    controller: 'UploadController as ctrl'
                   });
                         
               });
