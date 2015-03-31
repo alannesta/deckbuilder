@@ -15,6 +15,7 @@
       content: '<div>Tab2 content</div>'
     }];
 
+    self.cards = [{}, {}, {}, {},{}, {},{}, {}];
     self.selectedIndex = 1;
     self.onTabSelected = function(tab){
       console.log('tab selected', tab);

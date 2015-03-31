@@ -1,1 +1,52 @@
-<div>It works!</div>
+<md-content md-theme="docs-dark" class="md-padding" layout="row" layout-sm="column">
+    <form name="uploadForm">
+        <div layout layout-sm="column" layout-margin layout-align="center center">
+            <md-input-container flex>
+                <label>Name</label>
+                <input ng-model="ctrl.card.name">
+            </md-input-container>
+            <!--<md-input-container flex>-->
+            <md-select placeholder="Rarity" ng-model="ctrl.card.rarity" flex>
+                <md-option value="Normal">Normal</md-option>
+                <md-option value="Epic">Epic</md-option>
+                <md-option value="Rare">Rare</md-option>
+                <md-option value="Legendary">Legendary</md-option>
+            </md-select>
+            <!--</md-input-container>-->
+
+
+            <md-select placeholder="Class" ng-model="ctrl.card.class" flex>
+                <md-option value="Druid">Druid</md-option>
+                <md-option value="Priest">Priest</md-option>
+                <md-option value="Shamman">Shamman</md-option>
+                <md-option value="Mage">Mage</md-option>
+                <md-option value="Warrior">Warrior</md-option>
+                <md-option value="Rogue">Rogue</md-option>
+                <md-option value="Warlock">Warlock</md-option>
+                <md-option value="Paladin">Paladin</md-option>
+            </md-select>
+
+            <md-select placeholder="Cost" ng-model="ctrl.card.cost" flex>
+                <md-option value="1">1</md-option>
+                <md-option value="2">2</md-option>
+                <md-option value="3">3</md-option>
+                <md-option value="4">4</md-option>
+                <md-option value="5">5</md-option>
+                <md-option value="6">6</md-option>
+                <md-option value="7">7</md-option>
+                <md-option value="8">8</md-option>
+                <md-option value="9">9</md-option>
+            </md-select>
+
+        </div>
+
+        <div layout layout-sm="column">
+            <md-input-container>
+                <input type="file" ng-model="ctrl.card.image">
+            </md-input-container>
+        </div>
+        <div layout layout-sm="column">
+            <img class="preview"/>
+        </div>
+    </form>
+</md-content>

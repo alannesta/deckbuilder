@@ -1,85 +1,85 @@
 <!DOCTYPE html>
-<html lang="en" >
-  <head>
+<html lang="en">
+<head>
     <title>Angular Material - Starter App</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
-  </head>
+</head>
 
-  <body ng-app="starterApp" layout="column">
-     
-    <div ng-view>
-    </div>
-    
-    <!-- <script src="./bower_components/angular/angular.js"></script>
-    // <script src="./bower_components/angular-animate/angular-animate.js"></script>
-    // <script src="./bower_components/angular-aria/angular-aria.js"></script>
-    // <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script> -->
-  
-    <!-- <script src="./scripts/users/Users.js"></script>
-    // <script src="./scripts/users/UserController.js"></script>
-    // <script src="./scripts/users/UserService.js"></script> -->
+<body ng-app="starterApp" layout="column">
 
-     <!-- bower:js -->
-     <script src="bower_components/angular/angular.js"></script>
-     <script src="bower_components/angular-animate/angular-animate.js"></script>
-     <script src="bower_components/angular-aria/angular-aria.js"></script>
-     <script src="bower_components/angular-material/angular-material.js"></script>
-     <script src="bower_components/firebase/firebase.js"></script>
-     <script src="bower_components/angularfire/dist/angularfire.js"></script>
-     <script src="bower_components/angular-route/angular-route.js"></script>
-     <!-- endbower -->
-    
-    <script src="scripts/users/Users.js"></script>
-    <script src="scripts/users/UserController.js"></script>
-    <script src="scripts/users/UserService.js"></script>
-    <script src="scripts/PlaygroundController.js"></script>
-    <script src="scripts/UploadController.js"></script>
-    
+<div ng-view>
+</div>
 
-    <script type="text/javascript">
+<!-- <script src="./bower_components/angular/angular.js"></script>
+// <script src="./bower_components/angular-animate/angular-animate.js"></script>
+// <script src="./bower_components/angular-aria/angular-aria.js"></script>
+// <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script> -->
 
-          angular
-              .module('starterApp', ['ngMaterial', 'users', 'firebase', 'ngRoute'])
-              .config(function($mdThemingProvider, $mdIconProvider, $routeProvider){
+<!-- <script src="./scripts/users/Users.js"></script>
+// <script src="./scripts/users/UserController.js"></script>
+// <script src="./scripts/users/UserService.js"></script> -->
 
-                  $mdIconProvider
-                      .defaultIconSet("./assets/svg/avatars.svg", 128)
-                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-                      .icon("share"      , "./assets/svg/share.svg"       , 24)
-                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
-                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
-                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
-                      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<!-- endbower -->
 
-                      $mdThemingProvider.theme('default')
-                          .primaryPalette('brown')
-                          .accentPalette('red');
+<script src="scripts/users/Users.js"></script>
+<script src="scripts/users/UserController.js"></script>
+<script src="scripts/users/UserService.js"></script>
+<script src="scripts/PlaygroundController.js"></script>
+<script src="scripts/UploadController.js"></script>
 
-                  $routeProvider
-                  .when('/', {
-                    controller: 'UserController as ul',
-                    templateUrl: 'views/users.html'
-                  })
-                  .when('/playground',{
-                    templateUrl: 'views/playground.html',
-                    controller: 'PlaygroundController as ctrl'
-                  })
-                  .when('/upload', {
-                    templateUrl: 'views/upload.html',
-                    controller: 'UploadController as ctrl'
-                  });
-                        
-              });
 
-    </script>
+<script type="text/javascript">
 
-  </body>
+    angular
+            .module('starterApp', ['ngMaterial', 'users', 'firebase', 'ngRoute'])
+            .config(function ($mdThemingProvider, $mdIconProvider, $routeProvider) {
+
+                $mdIconProvider
+                        .defaultIconSet("./assets/svg/avatars.svg", 128)
+                        .icon("menu", "./assets/svg/menu.svg", 24)
+                        .icon("share", "./assets/svg/share.svg", 24)
+                        .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                        .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                        .icon("twitter", "./assets/svg/twitter.svg", 512)
+                        .icon("phone", "./assets/svg/phone.svg", 512);
+
+                $mdThemingProvider.theme('docs-dark', 'default')
+                        .primaryPalette('brown')
+                        .accentPalette('red');
+
+                $routeProvider
+                        .when('/', {
+                            controller: 'UserController as ul',
+                            templateUrl: 'views/users.html'
+                        })
+                        .when('/playground', {
+                            templateUrl: 'views/playground.html',
+                            controller: 'PlaygroundController as ctrl'
+                        })
+                        .when('/upload', {
+                            templateUrl: 'views/upload.html',
+                            controller: 'UploadController as ctrl'
+                        });
+
+            });
+
+</script>
+
+</body>
 </html>
