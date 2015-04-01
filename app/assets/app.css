@@ -148,6 +148,11 @@ span.name {
   height: 700px;
 }
 
+.preview{
+  max-height: 200px;
+  max-width: 300px;
+}
+
 
 
 

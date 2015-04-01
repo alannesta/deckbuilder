@@ -42,11 +42,12 @@
 
         <div layout layout-sm="column">
             <md-input-container>
-                <input type="file" ng-model="ctrl.card.image">
+                <input type="file" ng-model="ctrl.card.image" id="image-upload">
             </md-input-container>
         </div>
         <div layout layout-sm="column">
-            <img class="preview"/>
+            <img class="preview" id="preview"/>
         </div>
     </form>
+    <md-button ng-click="ctrl.save()" class="md-fab">Save</md-button>
 </md-content>
