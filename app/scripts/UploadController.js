@@ -4,12 +4,9 @@
        .module('users')
        .controller('UploadController', uploadController);
 
-  function uploadController($scope){
+  function uploadController($scope, FIREBASE){
 
-      var firebaseRef = 'https://radiant-fire-6566.firebaseio.com/cards';
-
-      var firebase = new Firebase(firebaseRef);
-
+      var firebase = new Firebase(FIREBASE.BASE_URL);
       var self = this;
       self.card = {};
       document.getElementById('image-upload').addEventListener('change', handleFileSelect);

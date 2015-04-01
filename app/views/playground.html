@@ -25,7 +25,8 @@
 				
 				<md-list layout="row" layout-padding layout-wrap>
 					<md-item class="card" ng-repeat = "card in ctrl.cards" flex="25">
-						
+						<div>{{card.name}}</div>
+						<img ng-src="{{card.imageData}}" class="preview">
 					</md-item>
 				</md-list>
 
