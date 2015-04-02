@@ -8,27 +8,26 @@
 				{{ctrl.tabs[0].title}}
 			</md-tab-label>
 			<md-tab-template>
-				<!-- <section>
-					<div class="card-row1" layout="row" layout-margin layout-wrap>
-						<div class="card" flex></div>
-						<div class="card" flex></div>
-						<div class="card" flex></div>
-						<div class="card" flex></div>
-					</div>
-					<div class="card-row1" layout="row" layout-margin layout-wrap>
-						<div class="card" flex></div>
-						<div class="card" flex></div>
-						<div class="card" flex></div>
-						<div class="card" flex></div>
-					</div>
-				</section> -->
-				
-				<md-list layout="row" layout-padding layout-wrap>
-					<md-item class="card" ng-repeat = "card in ctrl.cards" flex="25">
-						<div>{{card.name}}</div>
-						<img ng-src="{{card.imageData}}" class="preview">
-					</md-item>
-				</md-list>
+				<!--<md-list layout="row" layout-padding layout-wrap>-->
+					<!--<md-item class="card" ng-repeat = "card in ctrl.cards" flex="25">-->
+						<!--<div>{{card.name}}</div>-->
+						<!--<img ng-src="{{card.imageData}}" class="preview">-->
+					<!--</md-item>-->
+				<!--</md-list>-->
+
+				<md-grid-list
+						md-cols = "4" md-row-height = "3:2" md-gutter="20px">
+					<md-grid-tile ng-repeat = "card in ctrl.cards"
+								  md-colspan="1">
+						<div>
+							<img ng-src="{{card.imageData}}" style="max-width:100%"/>
+						</div>
+						<md-grid-tile-footer>
+							<span>{{card.name}}</span>
+						</md-grid-tile-footer>
+
+					</md-grid-tile>
+				</md-grid-list>
 
 			</md-tab-template>
 			
