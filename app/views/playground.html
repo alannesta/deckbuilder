@@ -16,11 +16,11 @@
 				<!--</md-list>-->
 
 				<md-grid-list
-						md-cols = "4" md-row-height = "3:2" md-gutter="20px">
+						md-cols = "4" md-row-height = "1:1" md-gutter="20px">
 					<md-grid-tile ng-repeat = "card in ctrl.cards"
 								  md-colspan="1">
 						<div>
-							<img ng-src="{{card.imageData}}" style="max-width:100%"/>
+							<img ng-src="{{card.imageSrc}}" style="max-height: 300px"/>
 						</div>
 						<md-grid-tile-footer>
 							<span>{{card.name}}</span>
