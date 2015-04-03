@@ -20,7 +20,7 @@
 					<md-grid-tile ng-repeat = "card in ctrl.cards"
 								  md-colspan="1">
 						<div>
-							<img ng-src="{{card.imageSrc}}" style="max-height: 300px"/>
+							<img ng-src="{{card.imageSrc}}" style="max-width: 70%"/>
 						</div>
 						<md-grid-tile-footer>
 							<span>{{card.name}}</span>
@@ -28,7 +28,7 @@
 
 					</md-grid-tile>
 				</md-grid-list>
-
+				<md-button ng-click="ctrl.nextPage()">Next Page</md-button>
 			</md-tab-template>
 			
 		</md-tab>
