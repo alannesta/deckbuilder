@@ -18,10 +18,10 @@
                         <md-grid-tile ng-repeat="card in ctrl.currentCards"
                                       md-colspan="1">
                             <div layout="column" style="text-align: center; font-size: 20px">
-                                <div>
+                                <div ng-click="ctrl.selectCard(card)">
                                     <img ng-src="{{card.imageSrc}}" style="max-width: 80%"/>
                                 </div>
-                                <div>{{card.total}}</div>
+                                <div> x {{card.total}}</div>
                             </div>
 
                             <!--<md-grid-tile-footer>-->

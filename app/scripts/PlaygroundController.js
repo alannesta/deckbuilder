@@ -31,6 +31,11 @@
       });
     }
 
+
+    self.selectCard = function(card){
+      card.total--;
+    };
+
     self.tabs = [{
       title: 'tab1',
       content: '<div>Tab1 content</div>'
@@ -44,7 +49,6 @@
       if (self.cards.length >= currentPage*perPage + perPage){
         currentPage++;
       }
-
     };
 
     self.previousPage = function(){
@@ -60,7 +64,6 @@
       var end = (self.cards.length > newVal*perPage + perPage)? newVal*perPage + perPage: self.cards.length;
       self.currentCards = self.cards.slice(newVal*perPage, end);
     });
-
 
     self.dataOperations = function(){
 
