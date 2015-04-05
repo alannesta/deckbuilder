@@ -14,15 +14,19 @@
                     <!--</md-list>-->
 
                     <md-grid-list
-                            md-cols="4" md-row-height="1:1" md-gutter="20px">
+                            md-cols="4" md-row-height="4:5" md-gutter="20px">
                         <md-grid-tile ng-repeat="card in ctrl.currentCards"
                                       md-colspan="1">
-                            <div>
-                                <img ng-src="{{card.imageSrc}}" style="max-width: 70%"/>
+                            <div layout="column" style="text-align: center; font-size: 20px">
+                                <div>
+                                    <img ng-src="{{card.imageSrc}}" style="max-width: 80%"/>
+                                </div>
+                                <div>{{card.total}}</div>
                             </div>
-                            <md-grid-tile-footer>
-                                <span>{{card.name}}</span> * <span>{{card.total}}</span>
-                            </md-grid-tile-footer>
+
+                            <!--<md-grid-tile-footer>-->
+                                <!--<div>{{card.total}}</div>-->
+                            <!--</md-grid-tile-footer>-->
 
                         </md-grid-tile>
                     </md-grid-list>
@@ -55,7 +59,7 @@
         </div>
 
         <div class="card-row2"></div> -->
-        <div style="position: absolute; bottom: 50px; width:100%">
+        <div style="position: absolute; bottom: 5px; width:100%">
             <md-button class="md-fab md-hue-2" ng-click="ctrl.previousPage()" style="position: relative; left: 40%">Prev</md-button>
             <md-button class="md-fab md-primary" ng-click="ctrl.nextPage()" style="position: relative; left: 50%">Next</md-button>
         </div>
