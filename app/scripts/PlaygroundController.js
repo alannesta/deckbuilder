@@ -18,14 +18,18 @@
       self.cards = $firebaseArray(firebase);
       self.cards.$loaded().then(function(){
         console.log('cards loaded');
+        decorate(self.cards);
         self.currentCards = self.cards.slice(0, perPage);
-        console.log(self.currentCards);
       }, function(err){
         console.log(err);
       });
     }
 
-
+    function decorate(array){
+      array.forEach(function(item){
+        item.total = 2;
+      });
+    }
 
     self.tabs = [{
       title: 'tab1',
@@ -40,19 +44,7 @@
       if (self.cards.length >= currentPage*perPage + perPage){
         currentPage++;
       }
-      // code to dupe cards
-      //self.cards.forEach(function(card){
-      //  delete card['$id'];
-      //  delete card['$priority'];
-      //  delete card['$$hashKey'];
-      //  firebase.push(card, function(err){
-      //    if(err){
-      //      console.log(err);
-      //    }else{
-      //      console.log('dupe success');
-      //    }
-      //  });
-      //});
+
     };
 
     self.previousPage = function(){
@@ -67,8 +59,47 @@
     }, function(newVal){
       var end = (self.cards.length > newVal*perPage + perPage)? newVal*perPage + perPage: self.cards.length;
       self.currentCards = self.cards.slice(newVal*perPage, end);
-      console.log(self.currentCards);
     });
+
+
+    self.dataOperations = function(){
+
+      // dupe cards
+
+      //self.cards.forEach(function(card){
+      //  delete card['$id'];
+      //  delete card['$priority'];
+      //  delete card['$$hashKey'];
+      //  firebase.push(card, function(err){
+      //    if(err){
+      //      console.log(err);
+      //    }else{
+      //      console.log('dupe success');
+      //    }
+      //  });
+      //});
+
+      // randomize card images
+
+      // code to dupe cards
+      //self.cards.forEach(function(card, index){
+      //  var dice = Math.random();
+      //
+      //  console.log(dice);
+      //  console.dir(card);
+      //  if (dice > 0.5 && dice < 0.7){
+      //    card.imageSrc = 'http://media-hearth.cursecdn.com/avatars/147/993/417.png';
+      //    self.cards.$save(index);
+      //  }
+      //
+      //  if (dice > 0.7){
+      //    card.imageSrc = 'http://media-hearth.cursecdn.com/avatars/148/382/420.png';
+      //    self.cards.$save(index);
+      //  }
+      //
+      //});
+
+    };
 
     //self.selectedIndex = 1;
     //self.onTabSelected = function(tab){
