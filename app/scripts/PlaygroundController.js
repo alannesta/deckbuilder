@@ -10,18 +10,21 @@
 
     var currentPage = 0;
     var perPage = 8;
-
-    self.currentCards = {};
-
     var firebase = new Firebase(FIREBASE.BASE_URL);
-    self.cards = $firebaseArray(firebase);
 
+    init();
 
-    self.cards.$loaded().then(function(){
-      console.log('cards loaded');
-    }, function(err){
-      console.log(err);
-    });
+    function init(){
+      self.cards = $firebaseArray(firebase);
+      self.cards.$loaded().then(function(){
+        console.log('cards loaded');
+        self.currentCards = self.cards.slice(0, perPage);
+        console.log(self.currentCards);
+      }, function(err){
+        console.log(err);
+      });
+    }
+
 
 
     self.tabs = [{
@@ -34,13 +37,14 @@
     }];
 
     self.nextPage = function(){
-      currentPage++;
+      if (self.cards.length >= currentPage*perPage + perPage){
+        currentPage++;
+      }
+      // code to dupe cards
       //self.cards.forEach(function(card){
-      //  console.log(card);
       //  delete card['$id'];
       //  delete card['$priority'];
       //  delete card['$$hashKey'];
-      //
       //  firebase.push(card, function(err){
       //    if(err){
       //      console.log(err);
@@ -49,6 +53,13 @@
       //    }
       //  });
       //});
+    };
+
+    self.previousPage = function(){
+      if (currentPage > 0){
+        currentPage--;
+      }
+
     };
 
     $scope.$watch(function(){

@@ -133,6 +133,7 @@ span.name {
 /*customized*/
 .tab-container{
   background-color: grey;
+  position: relative;
 }
 
 .card-list{

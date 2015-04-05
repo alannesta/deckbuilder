@@ -1,68 +1,68 @@
 <div layout="row" layout-margin layout-padding layout-fill>
-  <div class="tab-container" flex="75">
-	
-	
-	<md-tabs md-selected="ctrl.selectedIndex">
-		<md-tab md-on-select="ctrl.onTabSelected()">
-			<md-tab-label>
-				{{ctrl.tabs[0].title}}
-			</md-tab-label>
-			<md-tab-template>
-				<!--<md-list layout="row" layout-padding layout-wrap>-->
-					<!--<md-item class="card" ng-repeat = "card in ctrl.cards" flex="25">-->
-						<!--<div>{{card.name}}</div>-->
-						<!--<img ng-src="{{card.imageData}}" class="preview">-->
-					<!--</md-item>-->
-				<!--</md-list>-->
+    <div class="tab-container" flex="75">
+        <md-tabs md-selected="ctrl.selectedIndex">
+            <md-tab md-on-select="ctrl.onTabSelected()">
+                <md-tab-label>
+                    {{ctrl.tabs[0].title}}
+                </md-tab-label>
+                <md-tab-template>
+                    <!--<md-list layout="row" layout-padding layout-wrap>-->
+                    <!--<md-item class="card" ng-repeat = "card in ctrl.cards" flex="25">-->
+                    <!--<div>{{card.name}}</div>-->
+                    <!--<img ng-src="{{card.imageData}}" class="preview">-->
+                    <!--</md-item>-->
+                    <!--</md-list>-->
 
-				<md-grid-list
-						md-cols = "4" md-row-height = "1:1" md-gutter="20px">
-					<md-grid-tile ng-repeat = "card in ctrl.cards"
-								  md-colspan="1">
-						<div>
-							<img ng-src="{{card.imageSrc}}" style="max-width: 70%"/>
-						</div>
-						<md-grid-tile-footer>
-							<span>{{card.name}}</span>
-						</md-grid-tile-footer>
+                    <md-grid-list
+                            md-cols="4" md-row-height="1:1" md-gutter="20px">
+                        <md-grid-tile ng-repeat="card in ctrl.currentCards"
+                                      md-colspan="1">
+                            <div>
+                                <img ng-src="{{card.imageSrc}}" style="max-width: 70%"/>
+                            </div>
+                            <md-grid-tile-footer>
+                                <span>{{card.name}}</span>
+                            </md-grid-tile-footer>
 
-					</md-grid-tile>
-				</md-grid-list>
-				<md-button ng-click="ctrl.nextPage()">Next Page</md-button>
-			</md-tab-template>
-			
-		</md-tab>
-		<md-tab md-on-select="ctrl.onTabSelected()">
-			<md-tab-label>
-				{{ctrl.tabs[1].title}}
-			</md-tab-label>
-			<section>
-				This is the content of tab2
-			</section>
-		</md-tab>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </md-tab-template>
 
-	</md-tabs>
+            </md-tab>
+            <md-tab md-on-select="ctrl.onTabSelected()">
+                <md-tab-label>
+                    {{ctrl.tabs[1].title}}
+                </md-tab-label>
+                <section>
+                    This is the content of tab2
+                </section>
+            </md-tab>
 
-	<!-- <div class="card-row1" layout="row" layout-margin layout-wrap>
-		<div class="card" flex></div>
-		<div class="card" flex></div>
-		<div class="card" flex></div>
-		<div class="card" flex></div>
-	</div>
+        </md-tabs>
 
-	<div class="card-row1" layout="row" layout-margin layout-wrap>
-		<div class="card" flex></div>
-		<div class="card" flex></div>
-		<div class="card" flex></div>
-		<div class="card" flex></div>
-	</div>
-	
-	<div class="card-row2"></div> -->
+        <!-- <div class="card-row1" layout="row" layout-margin layout-wrap>
+            <div class="card" flex></div>
+            <div class="card" flex></div>
+            <div class="card" flex></div>
+            <div class="card" flex></div>
+        </div>
 
-  </div>
+        <div class="card-row1" layout="row" layout-margin layout-wrap>
+            <div class="card" flex></div>
+            <div class="card" flex></div>
+            <div class="card" flex></div>
+            <div class="card" flex></div>
+        </div>
 
-  <div class="card-list" flex="25">
-  	Selection List
+        <div class="card-row2"></div> -->
+        <div style="position: absolute; bottom: 50px; width:100%">
+            <md-button class="md-fab md-hue-2" ng-click="ctrl.previousPage()" style="position: relative; left: 40%">Prev</md-button>
+            <md-button class="md-fab md-primary" ng-click="ctrl.nextPage()" style="position: relative; left: 50%">Next</md-button>
+        </div>
+    </div>
 
-  </div>
+    <div class="card-list" flex="25">
+        Selection List
+
+    </div>
 </div>
