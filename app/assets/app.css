@@ -138,16 +138,16 @@ span.name {
 
 .card-list{
   background-color: green;
-}
-
-.card{
-  background-color: blue;
-  height: 250px;
-}
-
-.card-list{
   height: 700px;
 }
+
+.card-list md-item{
+  height: 20px;
+  background-color: grey;
+  margin-bottom: 5px;
+}
+
+
 
 .preview{
   max-height: 200px;

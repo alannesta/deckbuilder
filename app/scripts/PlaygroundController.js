@@ -27,13 +27,36 @@
 
     function decorate(array){
       array.forEach(function(item){
-        item.total = 2;
+        item.available = 2;
       });
     }
 
-
     self.selectCard = function(card){
-      card.total--;
+      if (card.available>0){
+        self.selectedCards.add(card);
+        card.available--;
+      }
+    };
+
+    self.selectedCards = {
+      cards: [],
+      add: function(card){
+        console.log(this.cards);
+        if (_.contains(this.cards, card)){
+          card.selectedCount = 2;
+        }else{
+          card.selectedCount = 1;
+          this.cards.push(card);
+        }
+      },
+      remove: function(card){
+        if (card.selectedCount === 2){
+          card.selectedCount--;
+        }else{
+          this.cards.splice(this.cards.indexOf(card), 1);
+        }
+        card.available++;
+      }
     };
 
     self.tabs = [{

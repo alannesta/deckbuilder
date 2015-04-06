@@ -21,7 +21,7 @@
                                 <div ng-click="ctrl.selectCard(card)">
                                     <img ng-src="{{card.imageSrc}}" style="max-width: 80%"/>
                                 </div>
-                                <div> x {{card.total}}</div>
+                                <div> x {{card.available}}</div>
                             </div>
 
                             <!--<md-grid-tile-footer>-->
@@ -67,6 +67,10 @@
 
     <div class="card-list" flex="25">
         Selection List
-
+        <md-list layout="column" layout-padding layout-wrap>
+            <md-item class="selectedCard" ng-repeat="card in ctrl.selectedCards.cards" ng-click="ctrl.selectedCards.remove(card)">
+                <div>{{card.name}} x {{card.selectedCount}}</div>
+            </md-item>
+        </md-list>
     </div>
 </div>
