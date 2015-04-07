@@ -42,6 +42,15 @@
                 </section>
             </md-tab>
 
+            <md-tab md-on-select="ctrl.onTabSelected()">
+                <md-tab-label>
+                    {{ctrl.tabs[2].title}}
+                </md-tab-label>
+                <md-tab-template ng-bind="ctrl.tabs[2].content">
+
+                </md-tab-template>
+            </md-tab>
+
         </md-tabs>
 
         <!-- <div class="card-row1" layout="row" layout-margin layout-wrap>

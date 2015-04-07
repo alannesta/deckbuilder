@@ -31,6 +31,13 @@
       });
     }
 
+    function reloadCards(index){
+      if (!_.isUndefined(index) && index !== 0){
+        self.cards = null;
+      }
+    }
+
+
     self.selectCard = function(card){
       if (card.available>0){
         self.selectedCards.add(card);
@@ -66,7 +73,12 @@
     {
       title: 'tab2',
       content: '<div>Tab2 content</div>'
-    }];
+    },
+    {
+      title: 'tab3',
+      content: '<div>Tab3 content</div>'
+    }
+    ];
 
     self.nextPage = function(){
       if (self.cards.length >= currentPage*perPage + perPage){
@@ -86,6 +98,13 @@
     }, function(newVal){
       var end = (self.cards.length > newVal*perPage + perPage)? newVal*perPage + perPage: self.cards.length;
       self.currentCards = self.cards.slice(newVal*perPage, end);
+    });
+
+    $scope.$watch(function(){
+      return self.selectedIndex;
+    }, function(newIndex){
+      reloadCards(newIndex);
+      console.log('watch index: ' + newIndex);
     });
 
     self.dataOperations = function(){
@@ -127,10 +146,10 @@
 
     };
 
-    //self.selectedIndex = 1;
-    //self.onTabSelected = function(tab){
-    //  console.log('tab selected', tab);
-    //}
+    // expression to be evaluated when a tab is selected
+    self.onTabSelected = function(){
+      console.log('tab selected');
+    }
 
   }
 })();
