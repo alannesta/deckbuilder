@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('users')
+       .module('deckbuilder')
        .controller('UploadController', uploadController);
 
   function uploadController($scope, FIREBASE){
@@ -28,7 +28,6 @@
       }
 
       self.save = function(){
-          console.log('save');
           firebase.push(self.card, function(err){
               if(err){
                   console.log(err);

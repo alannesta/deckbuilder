@@ -53,7 +53,7 @@
     <div class="card-list" flex="25">
         Selection List
         <md-list layout="column" layout-padding layout-wrap>
-            <md-item class="selectedCard" ng-repeat="card in ctrl.selectedCards.cards" ng-click="ctrl.selectedCards.remove(card)">
+            <md-item class="selectedCard" ng-repeat="card in ctrl.selectedCards" ng-click="ctrl.unselectCard(card)">
                 <div>{{card.name}} x {{card.selectedCount}}</div>
             </md-item>
         </md-list>

@@ -1,7 +1,7 @@
-(function () {
+(function() {
 
     angular
-        .module('users')
+        .module('deckbuilder')
         .controller('PlaygroundController', playgroundController);
 
     function playgroundController($firebaseArray, FIREBASE, $scope) {
@@ -15,84 +15,98 @@
         self.currentCards = [];     // cards in current page
         self.selectedCards = [];    // selected cards in left column
 
-        function decorate(array) {
-
-            var selectedIDs = self.selectedCards.cards.map(function (card) {
-                return card.$id;
-            });
-            console.log(selectedIDs);
-
-            array.forEach(function (item) {
-                if (!_.contains(selectedIDs, item.$id)) {
-                    item.available = 2;
-                } else {
-                    //var selectedCount = getCount(self.selectedCards, item.$id);
-                    self.selectedCards.cards.forEach(function (card) {
-                        if (item.$id === card.$id) {
-                            item.available = 2 - card.selectedCount;
-                        }
-                    });
-                }
-            });
-        }
+        //function decorate(array) {
+        //
+        //    var selectedIDs = self.selectedCards.cards.map(function (card) {
+        //        return card.$id;
+        //    });
+        //    console.log(selectedIDs);
+        //
+        //    array.forEach(function (item) {
+        //        if (!_.contains(selectedIDs, item.$id)) {
+        //            item.available = 2;
+        //        } else {
+        //            //var selectedCount = getCount(self.selectedCards, item.$id);
+        //            self.selectedCards.cards.forEach(function (card) {
+        //                if (item.$id === card.$id) {
+        //                    item.available = 2 - card.selectedCount;
+        //                }
+        //            });
+        //        }
+        //    });
+        //}
 
         function reloadCards(index) {
             if (!_.isUndefined(index)) {
                 var className = self.tabs[index].title;
                 self.cards = $firebaseArray(firebase.orderByChild('class').equalTo(className))
-                self.cards.$loaded().then(function () {
+                self.cards.$loaded().then(function() {
                     //console.log('cards loaded', self.cards);
                     //decorate(self.cards);
                     sync();
                     self.currentCards = self.cards.slice(0, perPage);
-                }, function (err) {
+                }, function(err) {
                     console.log(err);
                 });
             }
         }
 
         function sync() {
+            //debugger;
             for (var i = 0; i < self.cards.length; i++) {
-                for (var j = 0; j < self.selectedCards.length; j++) {
-                    if (self.cards[i].$id === self.selectedCards[j].$id) {
-                        self.cards[i].available = 2 - self.selectedCards[j].selectedCount;
-                    } else {
-                        self.cards[i].available = 2;
+                if (self.selectedCards.length > 0) {
+                    for (var j = 0; j < self.selectedCards.length; j++) {
+                        if (self.cards[i].$id === self.selectedCards[j].$id) {
+                            self.cards[i].available = 2 - self.selectedCards[j].selectedCount;
+                        } else {
+                            self.cards[i].available = 2;
+                        }
                     }
+                } else {
+                    self.cards[i].available = 2;
                 }
             }
         }
 
-        self.selectCard = function (card) {
+        self.selectCard = function(card) {
+            //debugger;
             if (card.available < 1) {
                 return;
             }
-            for (var j = 0; j < self.selectedCards.length; j++) {
-                if (card.$id === self.selectedCards[j].$id) {
-                    card.available--;
-                    self.selectedCards[j].selectedCount = 2;
-                    break;
-                } else {
-                    self.selectedCards.push(card);
-                    card.available--;
-                    card.selectedCount = 1;
+            if (self.selectedCards.length > 0) {
+                for (var j = 0; j < self.selectedCards.length; j++) {
+                    if (card.$id === self.selectedCards[j].$id) {
+                        card.available--;
+                        self.selectedCards[j].selectedCount = 2;
+                        break;
+                    } else {
+                        self.selectedCards.push(card);
+                        card.available--;
+                        card.selectedCount = 1;
+                    }
                 }
+            } else {
+                self.selectedCards.push(card);
+                card.available--;
+                card.selectedCount = 1;
             }
+
         };
 
 
-        self.unselectCard = function (card) {
+        self.unselectCard = function(card) {
+            //debugger;
+
+            if (card.selectedCount === 2) {
+                card.selectedCount = 1;
+            } else {
+                card.selectedCount = 0;
+                self.selectedCards.splice(this.selectedCards.indexOf(card), 1);
+            }
             for (var i = 0; i < self.cards.length; i++) {
-                if (card.selectedCount === 2) {
-                    card.selectedCount = 1;
-                } else {
-                    card.selectedCount = 0;
-                    self.selectedCards.splice(this.selectedCards.indexOf(card), 1);
-                }
                 if (card.$id === self.cards[i].$id) {
                     self.cards[i].available++;
                 }
-
             }
         };
         //self.selectCard = function (card) {
@@ -136,33 +150,33 @@
             }
         ];
 
-        self.nextPage = function () {
+        self.nextPage = function() {
             if (self.cards.length >= currentPage * perPage + perPage) {
                 currentPage++;
             }
         };
 
-        self.previousPage = function () {
+        self.previousPage = function() {
             if (currentPage > 0) {
                 currentPage--;
             }
 
         };
 
-        $scope.$watch(function () {
+        $scope.$watch(function() {
             return currentPage;
-        }, function (newVal) {
+        }, function(newVal) {
             var end = (self.cards.length > newVal * perPage + perPage) ? newVal * perPage + perPage : self.cards.length;
             self.currentCards = self.cards.slice(newVal * perPage, end);
         });
 
-        $scope.$watch(function () {
+        $scope.$watch(function() {
             return self.selectedIndex;
-        }, function (newIndex) {
+        }, function(newIndex) {
             reloadCards(newIndex);
         });
 
-        self.dataOperations = function () {
+        self.dataOperations = function() {
 
             // dupe cards
 
@@ -202,7 +216,7 @@
         };
 
         // expression to be evaluated when a tab is selected
-        self.onTabSelected = function () {
+        self.onTabSelected = function() {
             console.log('tab selected');
         }
 
