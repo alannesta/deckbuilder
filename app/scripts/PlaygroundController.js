@@ -11,32 +11,43 @@
     var currentPage = 0;
     var perPage = 8;
     var firebase = new Firebase(FIREBASE.BASE_URL);
-
-    init();
-
-    function init(){
-      self.cards = $firebaseArray(firebase);
-      self.cards.$loaded().then(function(){
-        console.log('cards loaded');
-        decorate(self.cards);
-        self.currentCards = self.cards.slice(0, perPage);
-      }, function(err){
-        console.log(err);
-      });
-    }
+    self.cards = [];
+    self.currentCards = [];
 
     function decorate(array){
+
+      var selectedIDs = self.selectedCards.cards.map(function(card){
+        return card.$id;
+      });
+      console.log(selectedIDs);
+
       array.forEach(function(item){
-        item.available = 2;
+        if (!_.contains(selectedIDs, item.$id)){
+          item.available = 2;
+        }else{
+          //var selectedCount = getCount(self.selectedCards, item.$id);
+          self.selectedCards.cards.forEach(function(card){
+            if (item.$id === card.$id){
+              item.available = 2 - card.selectedCount;
+            }
+          });
+        }
       });
     }
 
-    function reloadCards(index){
-      if (!_.isUndefined(index) && index !== 0){
-        self.cards = null;
+    function reloadCards(index) {
+      if (!_.isUndefined(index)) {
+        var className = self.tabs[index].title;
+        self.cards = $firebaseArray(firebase.orderByChild('class').equalTo(className))
+        self.cards.$loaded().then(function(){
+          //console.log('cards loaded', self.cards);
+          decorate(self.cards);
+          self.currentCards = self.cards.slice(0, perPage);
+        }, function(err){
+          console.log(err);
+        });
       }
     }
-
 
     self.selectCard = function(card){
       if (card.available>0){
@@ -48,7 +59,6 @@
     self.selectedCards = {
       cards: [],
       add: function(card){
-        console.log(this.cards);
         if (_.contains(this.cards, card)){
           card.selectedCount = 2;
         }else{
@@ -67,15 +77,15 @@
     };
 
     self.tabs = [{
-      title: 'tab1',
+      title: 'Warrior',
       content: '<div>Tab1 content</div>'
     },
     {
-      title: 'tab2',
+      title: 'Mage',
       content: '<div>Tab2 content</div>'
     },
     {
-      title: 'tab3',
+      title: 'Shamman',
       content: '<div>Tab3 content</div>'
     }
     ];
@@ -104,7 +114,6 @@
       return self.selectedIndex;
     }, function(newIndex){
       reloadCards(newIndex);
-      console.log('watch index: ' + newIndex);
     });
 
     self.dataOperations = function(){
