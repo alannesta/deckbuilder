@@ -13,8 +13,7 @@ module.exports = function(config) {
             'app/bower_components/angular-route/angular-route.js',
             'app/bower_components/underscore/underscore.js',
             'app/scripts/app.js',       //!important have to explicitly load the module dependencies before all other files
-            'app/scripts/**/*.js',
-            'app/view*/**/*.js'
+            'app/scripts/**/*.js'
         ],
 
         autoWatch: true,

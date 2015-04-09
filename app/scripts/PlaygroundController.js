@@ -15,33 +15,12 @@
         self.currentCards = [];     // cards in current page
         self.selectedCards = [];    // selected cards in left column
 
-        //function decorate(array) {
-        //
-        //    var selectedIDs = self.selectedCards.cards.map(function (card) {
-        //        return card.$id;
-        //    });
-        //    console.log(selectedIDs);
-        //
-        //    array.forEach(function (item) {
-        //        if (!_.contains(selectedIDs, item.$id)) {
-        //            item.available = 2;
-        //        } else {
-        //            //var selectedCount = getCount(self.selectedCards, item.$id);
-        //            self.selectedCards.cards.forEach(function (card) {
-        //                if (item.$id === card.$id) {
-        //                    item.available = 2 - card.selectedCount;
-        //                }
-        //            });
-        //        }
-        //    });
-        //}
-
         function reloadCards(index) {
             if (!_.isUndefined(index)) {
                 var className = self.tabs[index].title;
                 self.cards = $firebaseArray(firebase.orderByChild('class').equalTo(className))
                 self.cards.$loaded().then(function() {
-                    //console.log('cards loaded', self.cards);
+                    console.log('cards loaded');
                     //decorate(self.cards);
                     sync();
                     self.currentCards = self.cards.slice(0, perPage);
