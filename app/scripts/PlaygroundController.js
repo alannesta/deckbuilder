@@ -20,8 +20,7 @@
                 var className = self.tabs[index].title;
                 self.cards = $firebaseArray(firebase.orderByChild('class').equalTo(className))
                 self.cards.$loaded().then(function() {
-                    console.log('cards loaded');
-                    //decorate(self.cards);
+                    //console.log('cards loaded');
                     sync();
                     self.currentCards = self.cards.slice(0, perPage);
                 }, function(err) {
@@ -37,9 +36,9 @@
                     for (var j = 0; j < self.selectedCards.length; j++) {
                         if (self.cards[i].$id === self.selectedCards[j].$id) {
                             self.cards[i].available = 2 - self.selectedCards[j].selectedCount;
-                        } else {
-                            self.cards[i].available = 2;
+                            break;
                         }
+                        self.cards[i].available = 2;
                     }
                 } else {
                     self.cards[i].available = 2;
@@ -49,21 +48,23 @@
 
         self.selectCard = function(card) {
             //debugger;
+            console.log('select card', card);
             if (card.available < 1) {
                 return;
             }
-            if (self.selectedCards.length > 0) {
-                for (var j = 0; j < self.selectedCards.length; j++) {
+            var len = self.selectedCards.length;
+            if (len > 0) {
+                for (var j = 0; j < len; j++) {
                     if (card.$id === self.selectedCards[j].$id) {
                         card.available--;
                         self.selectedCards[j].selectedCount = 2;
-                        break;
-                    } else {
-                        self.selectedCards.push(card);
-                        card.available--;
-                        card.selectedCount = 1;
+                        return;
                     }
                 }
+                self.selectedCards.push(card);
+                card.available--;
+                card.selectedCount = 1;
+
             } else {
                 self.selectedCards.push(card);
                 card.available--;
@@ -75,6 +76,7 @@
 
         self.unselectCard = function(card) {
             //debugger;
+            console.log('unselect card', card);
 
             if (card.selectedCount === 2) {
                 card.selectedCount = 1;
