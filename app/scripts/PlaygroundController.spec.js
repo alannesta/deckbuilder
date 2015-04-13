@@ -43,7 +43,7 @@ describe('Playground Controller', function () {
         expect(pController.selectedCards[0].selectedCount).toEqual(2);
     });
 
-    it('should be able to select card and update available properly (case: 2)', function(){
+    it('should be able to select card and update available properly (case: 2 single selection)', function(){
         pController.cards = [
             {$id: 1, name: 'pengpeng', class: 'Warrior', available: 2},
             {$id: 2, name: 'air', class: 'Mage', available: 2},
@@ -58,6 +58,41 @@ describe('Playground Controller', function () {
         expect(pController.selectedCards[0].selectedCount).toEqual(1);
         expect(pController.selectedCards[0].name).toEqual('water');
     });
+
+    it('should be able to select card and update available properly (case: 3 multiple selection)', function(){
+        pController.cards = [
+            {$id: 1, name: 'pengpeng', class: 'Warrior', available: 2},
+            {$id: 2, name: 'air', class: 'Mage', available: 2},
+            {$id: 3, name: 'water', class: 'Rogue', available: 2},
+            {$id: 4, name: 'fire', class: 'Warlock', available: 2}
+        ];
+        pController.selectedCards = [];
+
+        pController.selectCard(pController.cards[2]);
+
+        // step1: select one card
+        expect(pController.cards[2].available).toEqual(1);
+        expect(pController.selectedCards[0].selectedCount).toEqual(1);
+        expect(pController.selectedCards[0].name).toEqual('water');
+        expect(pController.selectedCards.length).toEqual(1);
+
+        // step2: select another card
+        pController.selectCard(pController.cards[0]);
+        expect(pController.cards[0].available).toEqual(1);
+        expect(pController.selectedCards[1].selectedCount).toEqual(1);
+        expect(pController.selectedCards[1].name).toEqual('pengpeng');
+
+        // step3: select the 3rd card
+        pController.selectCard(pController.cards[1]);
+        expect(pController.cards[1].available).toEqual(1);
+        expect(pController.selectedCards[2].selectedCount).toEqual(1);
+        expect(pController.selectedCards[2].name).toEqual('air');
+
+        expect(pController.selectedCards.length).toEqual(3);
+
+    });
+
+
 
     it('should be able to unselect card and update available properly (case: 1)', function(){
         pController.cards = [
