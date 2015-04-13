@@ -15,6 +15,8 @@
         self.currentCards = [];     // cards in current page
         self.selectedCards = [];    // selected cards in left column
 
+        self.sync = sync;
+
         function reloadCards(index) {
             if (!_.isUndefined(index)) {
                 var className = self.tabs[index].title;
