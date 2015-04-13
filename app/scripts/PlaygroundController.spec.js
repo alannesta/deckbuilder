@@ -129,4 +129,24 @@ describe('Playground Controller', function () {
     });
 
 
+    it('should sync selected cards and loaded cards', function(){
+        pController.cards = [
+            {$id: 1, name: 'pengpeng', class: 'Warrior'},
+            {$id: 2, name: 'air', class: 'Mage'},
+            {$id: 3, name: 'water', class: 'Rogue'},
+            {$id: 4, name: 'fire', class: 'Warlock'}
+        ];
+        pController.selectedCards = [
+            {$id: 2, name: 'air', class: 'Mage', selectedCount: 2},
+            {$id: 4, name: 'fire', class: 'Warlock', selectedCount: 1},
+            {$id: 5, name: 'alive', class: 'Warlock', selectedCount: 1}
+        ];
+
+        pController.sync();
+        expect(pController.cards[1].available).toBeDefined();
+        expect(pController.cards[1].available).toEqual(0);
+        expect(pController.cards[3].available).toEqual(1);
+
+    });
+
 });
