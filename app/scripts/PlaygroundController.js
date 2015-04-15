@@ -32,7 +32,6 @@
         }
 
         function sync() {
-            //debugger;
             for (var i = 0; i < self.cards.length; i++) {
                 if (self.selectedCards.length > 0) {
                     for (var j = 0; j < self.selectedCards.length; j++) {
@@ -49,7 +48,6 @@
         }
 
         self.selectCard = function(card) {
-            //debugger;
             console.log('select card', card);
             if (card.available < 1) {
                 return;
@@ -66,7 +64,6 @@
                 self.selectedCards.push(card);
                 card.available--;
                 card.selectedCount = 1;
-
             } else {
                 self.selectedCards.push(card);
                 card.available--;
@@ -77,7 +74,6 @@
 
 
         self.unselectCard = function(card) {
-            //debugger;
             console.log('unselect card', card);
 
             if (card.selectedCount === 2) {
@@ -92,32 +88,6 @@
                 }
             }
         };
-        //self.selectCard = function (card) {
-        //    if (card.available > 0) {
-        //        self.selectedCards.add(card);
-        //        card.available--;
-        //    }
-        //};
-
-        //self.selectedCards = {
-        //    cards: [],
-        //    add: function (card) {
-        //        if (_.contains(this.cards, card)) {
-        //            card.selectedCount = 2;
-        //        } else {
-        //            card.selectedCount = 1;
-        //            this.cards.push(card);
-        //        }
-        //    },
-        //    remove: function (card) {
-        //        if (card.selectedCount === 2) {
-        //            card.selectedCount--;
-        //        } else {
-        //            this.cards.splice(this.cards.indexOf(card), 1);
-        //        }
-        //        card.available++;
-        //    }
-        //};
 
         self.tabs = [{
             title: 'Warrior',

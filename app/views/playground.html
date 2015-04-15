@@ -11,7 +11,7 @@
                         <md-grid-tile ng-repeat="card in ctrl.currentCards"
                                       md-colspan="1">
                             <div layout="column" style="text-align: center; font-size: 20px">
-                                <div ng-click="ctrl.selectCard(card)">
+                                <div csj-drag card="card" ng-click="ctrl.selectCard(card)">
                                     <img ng-src="{{card.imageSrc}}" style="max-width: 80%"/>
                                 </div>
                                 <div> x {{card.available}}</div>
@@ -52,7 +52,7 @@
 
     <div class="card-list" flex="25">
         Selection List
-        <md-list layout="column" layout-padding layout-wrap>
+        <md-list csj-drop cardList="ctrl.selectedCards" layout="column" layout-padding layout-wrap>
             <md-item class="selectedCard" ng-repeat="card in ctrl.selectedCards" ng-click="ctrl.unselectCard(card)">
                 <div>{{card.name}} x {{card.selectedCount}}</div>
             </md-item>
