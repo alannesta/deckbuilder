@@ -48,7 +48,6 @@
         }
 
         self.selectCard = function(card) {
-            console.log('select card', card);
             if (card.available < 1) {
                 return;
             }
@@ -61,21 +60,43 @@
                         return;
                     }
                 }
-                self.selectedCards.push(card);
-                card.available--;
-                card.selectedCount = 1;
+                //if (self.cards.indexOf(card)<0){
+                //    card = findCardById(card.id, self.cards);
+                //}
+                //self.selectedCards.push(card);
+                //card.available--;
+                //card.selectedCount = 1;
             } else {
-                self.selectedCards.push(card);
-                card.available--;
-                card.selectedCount = 1;
+                //if (self.cards.indexOf(card)<0){
+                //    card = findCardById(card.id, self.cards);
+                //}
+                //self.selectedCards.push(card);
+                //card.available--;
+                //card.selectedCount = 1;
             }
+            addNewCardToSelection(card);
 
         };
 
+        function findCardById(id, arr){
+            arr.forEach(function(item){
+               if (item.$id === id){
+                   return item;
+               }
+            });
+            return null;
+        }
+
+        function addNewCardToSelection(card){
+            if (self.cards.indexOf(card)<0){
+                card = findCardById(card.$id, self.cards);
+            }
+            self.selectedCards.push(card);
+            card.available--;
+            card.selectedCount = 1;
+        }
 
         self.unselectCard = function(card) {
-            console.log('unselect card', card);
-
             if (card.selectedCount === 2) {
                 card.selectedCount = 1;
             } else {
