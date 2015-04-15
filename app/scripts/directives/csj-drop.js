@@ -9,22 +9,27 @@ angular.module('deckbuilder').directive('csjDrop', function() {
             var el = element[0];
 
             el.addEventListener('dragenter', function(event) {
+                event.preventDefault();
                 console.log('dragenter');
             });
 
             el.addEventListener('dragleave', function(event) {
+                event.preventDefault();
                 console.log('dragleave');
-            }, false);
+            });
 
             el.addEventListener('dragover', function(event) {
                 event.preventDefault();   // this will allow the item to "drop"
-            }, false);
+            });
 
             el.addEventListener('drop', function(event) {
+                console.log('drop card');
                 var data = event.dataTransfer.getData("card");
-                //console.log(JSON.parse(data));
+
+                console.log(JSON.parse(data));
                 scope.$apply(function(){
-                    scope.cardList.push(JSON.parse(data));
+                    //scope.cardList.push(JSON.parse(data));
+                    scope.onDrop({card: JSON.parse(data)});
                 });
             });
         }

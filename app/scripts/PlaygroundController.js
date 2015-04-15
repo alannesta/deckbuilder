@@ -89,10 +89,11 @@
             }
         };
 
-        self.tabs = [{
+        self.tabs = [
+            {
             title: 'Warrior',
             content: '<div>Tab1 content</div>'
-        },
+            },
             {
                 title: 'Mage',
                 content: '<div>Tab2 content</div>'

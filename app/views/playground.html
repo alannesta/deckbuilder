@@ -50,9 +50,9 @@
         </div>
     </div>
 
-    <div class="card-list" flex="25">
+    <div class="card-list" csj-drop card-list="ctrl.selectedCards" on-drop="ctrl.selectCard(card)" flex="25">
         Selection List
-        <md-list csj-drop cardList="ctrl.selectedCards" layout="column" layout-padding layout-wrap>
+        <md-list layout="column" layout-padding layout-wrap>
             <md-item class="selectedCard" ng-repeat="card in ctrl.selectedCards" ng-click="ctrl.unselectCard(card)">
                 <div>{{card.name}} x {{card.selectedCount}}</div>
             </md-item>
