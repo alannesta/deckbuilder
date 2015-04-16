@@ -10,12 +10,10 @@ angular.module('deckbuilder').directive('csjDrop', function() {
 
             el.addEventListener('dragenter', function(event) {
                 event.preventDefault();
-                console.log('dragenter');
             });
 
             el.addEventListener('dragleave', function(event) {
                 event.preventDefault();
-                console.log('dragleave');
             });
 
             el.addEventListener('dragover', function(event) {
@@ -23,7 +21,6 @@ angular.module('deckbuilder').directive('csjDrop', function() {
             });
 
             el.addEventListener('drop', function(event) {
-                console.log('drop card');
                 var data = event.dataTransfer.getData("card");
 
                 console.log(JSON.parse(data));

@@ -7,14 +7,12 @@ angular.module('deckbuilder').directive('csjDrag', function() {
             el.draggable = 'true';  // set html5 draggable attribute
 
             el.addEventListener('dragstart', function(event) {
-                console.log('dragstart');
                 event.dataTransfer.effectAllowed = "move";
                 var card = JSON.stringify(scope.$eval(attrs.card));
                 event.dataTransfer.setData("card", card);
             });
 
             el.addEventListener('dragend', function(event) {
-                console.log('dragend');
             });
         }
     }

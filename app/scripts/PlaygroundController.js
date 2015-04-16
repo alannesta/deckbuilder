@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     angular
         .module('deckbuilder')
@@ -21,11 +21,11 @@
             if (!_.isUndefined(index)) {
                 var className = self.tabs[index].title;
                 self.cards = $firebaseArray(firebase.orderByChild('class').equalTo(className))
-                self.cards.$loaded().then(function() {
+                self.cards.$loaded().then(function () {
                     //console.log('cards loaded');
                     sync();
                     self.currentCards = self.cards.slice(0, perPage);
-                }, function(err) {
+                }, function (err) {
                     console.log(err);
                 });
             }
@@ -47,7 +47,7 @@
             }
         }
 
-        self.selectCard = function(card) {
+        self.selectCard = function (card) {
             if (card.available < 1) {
                 return;
             }
@@ -60,35 +60,14 @@
                         return;
                     }
                 }
-                //if (self.cards.indexOf(card)<0){
-                //    card = findCardById(card.id, self.cards);
-                //}
-                //self.selectedCards.push(card);
-                //card.available--;
-                //card.selectedCount = 1;
-            } else {
-                //if (self.cards.indexOf(card)<0){
-                //    card = findCardById(card.id, self.cards);
-                //}
-                //self.selectedCards.push(card);
-                //card.available--;
-                //card.selectedCount = 1;
             }
             addNewCardToSelection(card);
 
         };
 
-        function findCardById(id, arr){
-            arr.forEach(function(item){
-               if (item.$id === id){
-                   return item;
-               }
-            });
-            return null;
-        }
-
-        function addNewCardToSelection(card){
-            if (self.cards.indexOf(card)<0){
+        function addNewCardToSelection(card) {
+            // the drag case;
+            if (self.cards.indexOf(card) < 0) {
                 card = findCardById(card.$id, self.cards);
             }
             self.selectedCards.push(card);
@@ -96,7 +75,16 @@
             card.selectedCount = 1;
         }
 
-        self.unselectCard = function(card) {
+        function findCardById(id, arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].$id === id) {
+                    return arr[i];
+                }
+            }
+            return null;
+        }
+
+        self.unselectCard = function (card) {
             if (card.selectedCount === 2) {
                 card.selectedCount = 1;
             } else {
@@ -112,8 +100,8 @@
 
         self.tabs = [
             {
-            title: 'Warrior',
-            content: '<div>Tab1 content</div>'
+                title: 'Warrior',
+                content: '<div>Tab1 content</div>'
             },
             {
                 title: 'Mage',
@@ -125,33 +113,33 @@
             }
         ];
 
-        self.nextPage = function() {
+        self.nextPage = function () {
             if (self.cards.length >= currentPage * perPage + perPage) {
                 currentPage++;
             }
         };
 
-        self.previousPage = function() {
+        self.previousPage = function () {
             if (currentPage > 0) {
                 currentPage--;
             }
 
         };
 
-        $scope.$watch(function() {
+        $scope.$watch(function () {
             return currentPage;
-        }, function(newVal) {
+        }, function (newVal) {
             var end = (self.cards.length > newVal * perPage + perPage) ? newVal * perPage + perPage : self.cards.length;
             self.currentCards = self.cards.slice(newVal * perPage, end);
         });
 
-        $scope.$watch(function() {
+        $scope.$watch(function () {
             return self.selectedIndex;
-        }, function(newIndex) {
+        }, function (newIndex) {
             reloadCards(newIndex);
         });
 
-        self.dataOperations = function() {
+        self.dataOperations = function () {
 
             // dupe cards
 
@@ -191,7 +179,7 @@
         };
 
         // expression to be evaluated when a tab is selected
-        self.onTabSelected = function() {
+        self.onTabSelected = function () {
             console.log('tab selected');
         }
 
