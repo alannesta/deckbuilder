@@ -55,6 +55,9 @@
             if (len > 0) {
                 for (var j = 0; j < len; j++) {
                     if (card.$id === self.selectedCards[j].$id) {
+                        if (self.cards.indexOf(card) < 0) {
+                            card = findCardById(card.$id, self.cards);
+                        }
                         card.available--;
                         self.selectedCards[j].selectedCount = 2;
                         return;

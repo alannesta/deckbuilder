@@ -92,6 +92,41 @@ describe('Playground Controller', function () {
 
     });
 
+    it('should be able to select card and update available properly (case: 4 drag selection)', function(){
+        pController.cards = [
+            {$id: 1, name: 'pengpeng', class: 'Warrior', available: 2},
+            {$id: 2, name: 'air', class: 'Mage', available: 2},
+            {$id: 3, name: 'water', class: 'Rogue', available: 2},
+            {$id: 4, name: 'fire', class: 'Warlock', available: 2}
+        ];
+        pController.selectCard(pController.cards[1]);
+        expect(pController.cards[1].available).toEqual(1);
+
+        pController.selectCard({$id: 2, name: 'air', class: 'Mage', available: 1});
+
+        expect(pController.cards[1].available).toEqual(0);
+        expect(pController.selectedCards[0].selectedCount).toEqual(2);
+        expect(pController.selectedCards[0].name).toEqual('air');
+    });
+
+
+    it('should be able to select card and update available properly (case: 4 drag an already selected card)', function(){
+        pController.cards = [
+            {$id: 1, name: 'pengpeng', class: 'Warrior', available: 2},
+            {$id: 2, name: 'air', class: 'Mage', available: 2},
+            {$id: 3, name: 'water', class: 'Rogue', available: 2},
+            {$id: 4, name: 'fire', class: 'Warlock', available: 2}
+        ];
+        pController.selectedCards.oy;
+
+        pController.selectCard({$id: 1, name: 'pengpeng', class: 'Warrior', available: 2}); // drag a similar object
+
+        expect(pController.cards[0].available).toEqual(1);
+        expect(pController.selectedCards[0].selectedCount).toEqual(1);
+        expect(pController.selectedCards[0].name).toEqual('pengpeng');
+        expect(pController.selectedCards[0]).toEqual(pController.cards[0]);
+    });
+
 
 
     it('should be able to unselect card and update available properly (case: 1)', function(){
