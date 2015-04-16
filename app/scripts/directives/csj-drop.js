@@ -2,8 +2,7 @@ angular.module('deckbuilder').directive('csjDrop', function() {
     return {
         restrict: 'A',
         scope: {
-            onDrop: '&',
-            cardList: '='
+            onDrop: '&'
         },
         link: function(scope, element) {
             var el = element[0];

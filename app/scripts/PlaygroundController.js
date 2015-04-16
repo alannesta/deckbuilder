@@ -88,6 +88,14 @@
         }
 
         self.unselectCard = function (card) {
+
+            if (card.selectedCount < 1) {
+                return;
+            }
+            // handle the drag case
+            if(self.selectedCards.indexOf(card)<0){
+                card = findCardById(card.$id, self.selectedCards);
+            }
             if (card.selectedCount === 2) {
                 card.selectedCount = 1;
             } else {

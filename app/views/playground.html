@@ -6,24 +6,25 @@
                     {{tab.title}}
                 </md-tab-label>
                 <md-tab-template>
-                    <md-grid-list
-                            md-cols="4" md-row-height="4:5" md-gutter="20px">
-                        <md-grid-tile ng-repeat="card in ctrl.currentCards"
-                                      md-colspan="1">
-                            <div layout="column" style="text-align: center; font-size: 20px">
-                                <div csj-drag card="card" ng-click="ctrl.selectCard(card)">
-                                    <img ng-src="{{card.imageSrc}}" style="max-width: 80%"/>
+                    <div csj-drop on-drop="ctrl.unselectCard(card)">
+                        <md-grid-list
+                                md-cols="4" md-row-height="4:5" md-gutter="20px">
+                            <md-grid-tile ng-repeat="card in ctrl.currentCards"
+                                          md-colspan="1">
+                                <div layout="column" style="text-align: center; font-size: 20px">
+                                    <div csj-drag card="card" ng-click="ctrl.selectCard(card)">
+                                        <img ng-src="{{card.imageSrc}}" style="max-width: 80%"/>
+                                    </div>
+                                    <div> x {{card.available}}</div>
                                 </div>
-                                <div> x {{card.available}}</div>
-                            </div>
 
-                            <!--<md-grid-tile-footer>-->
+                                <!--<md-grid-tile-footer>-->
                                 <!--<div>{{card.total}}</div>-->
-                            <!--</md-grid-tile-footer>-->
-                        </md-grid-tile>
-                    </md-grid-list>
+                                <!--</md-grid-tile-footer>-->
+                            </md-grid-tile>
+                        </md-grid-list>
+                    </div>
                 </md-tab-template>
-
             </md-tab>
             <!--<md-tab md-on-select="ctrl.onTabSelected()">-->
                 <!--<md-tab-label>-->
@@ -50,11 +51,11 @@
         </div>
     </div>
 
-    <div class="card-list" csj-drop card-list="ctrl.selectedCards" on-drop="ctrl.selectCard(card)" flex="25">
+    <div class="card-list" csj-drop on-drop="ctrl.selectCard(card)" flex="25">
         Selection List
         <md-list layout="column" layout-padding layout-wrap>
             <md-item class="selectedCard" ng-repeat="card in ctrl.selectedCards" ng-click="ctrl.unselectCard(card)">
-                <div>{{card.name}} x {{card.selectedCount}}</div>
+                <div csj-drag card="card">{{card.name}} x {{card.selectedCount}}</div>
             </md-item>
         </md-list>
     </div>
