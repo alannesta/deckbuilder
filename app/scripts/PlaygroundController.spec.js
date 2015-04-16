@@ -127,6 +127,22 @@ describe('Playground Controller', function () {
         expect(pController.selectedCards[0]).toEqual(pController.cards[0]);
     });
 
+    it('should not be able to select card and when available is below 1', function(){
+        pController.cards = [
+            {$id: 1, name: 'pengpeng', class: 'Warrior', available: 2},
+            {$id: 2, name: 'air', class: 'Mage', available: 0},
+            {$id: 3, name: 'water', class: 'Rogue', available: 2},
+            {$id: 4, name: 'fire', class: 'Warlock', available: 2}
+        ];
+
+        pController.selectedCards = [
+            {$id: 2, name: 'air', class: 'Mage', selectedCount: 1}
+        ];
+
+        pController.selectCard(pController.cards[1]);
+
+        expect(pController.selectedCards.length).toEqual(1);
+    });
 
 
     it('should be able to unselect card and update available properly (case: 1)', function(){
@@ -183,5 +199,24 @@ describe('Playground Controller', function () {
         expect(pController.cards[3].available).toEqual(1);
 
     });
+
+    it('should sync selected cards and loaded cards (case 2: selectedCards list empty)', function(){
+        pController.cards = [
+            {$id: 1, name: 'pengpeng', class: 'Warrior'},
+            {$id: 2, name: 'air', class: 'Mage'},
+            {$id: 3, name: 'water', class: 'Rogue'},
+            {$id: 4, name: 'fire', class: 'Warlock'}
+        ];
+        pController.selectedCards = [
+
+        ];
+
+        pController.sync();
+        expect(pController.cards[1].available).toBeDefined();
+        expect(pController.cards[1].available).toEqual(2);
+        expect(pController.cards[3].available).toEqual(2);
+
+    });
+
 
 });
