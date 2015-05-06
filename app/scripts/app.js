@@ -23,6 +23,10 @@ angular
             .when('/upload', {
                 templateUrl: 'views/upload.html',
                 controller: 'UploadController as ctrl'
+            })
+            .when('/probability', {
+                templateUrl: 'views/probability.html',
+                controller: 'ProbabilityController as ctrl'
             });
 
     }).constant('FIREBASE', {
