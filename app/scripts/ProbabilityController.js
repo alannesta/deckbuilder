@@ -5,6 +5,8 @@
 
     function probabilityController(MathUtil){
         var self = this;
+
+        var STARTING_MODIFIER = 1;      // assume we keep one card at starting hand (not replacing it);
         var C = MathUtil.combination;   // alias for MathUtil.combination
         self.cardOnTime = cardOnTime;
         self.comboSuccess = comboSuccess;
@@ -19,9 +21,11 @@
          *
          * @returns string - the probability
          */
-        function cardOnTime(count, cost, goFirst) {
+        function cardOnTime(senario, cost) {
             var prob;
-            var cardsDrawed = cardsDrawedAtCost(cost, goFirst);
+            var count = parseCountFromSenario(senario);
+
+            var cardsDrawed = cardsDrawedAtCost(cost, senario.goFirst, senario.mulligan);
             prob = 1 - C(30-count, cardsDrawed)/C(30, cardsDrawed);
             return prob.toFixed(2);
         }
@@ -39,17 +43,30 @@
 
         }
 
-        function cardsDrawedAtCost(cost, goFirst){
+        function cardsDrawedAtCost(cost, goFirst, mulligan) {
             if (goFirst) {
-                return 3 + cost;
+                // if mulligan, more cards are actually drawed because you change your starting hand for it
+                if (mulligan){
+                    return 3 + mulligan + cost;
+                }else{
+                    return 3 + cost;
+                }
+
             }else {
-                return 4 + cost;
+                if (mulligan){
+                    return 4 + mulligan + cost;
+                }else{
+                    return 4 + cost;
+                }
             }
         }
 
-        function parseSenario(){
-
+        function parseCountFromSenario(senario){
+            var total = 0;
+            senario.cards.forEach(function(card){
+                total = total + card.count;
+            });
+            return total;
         }
-
     }
 })();

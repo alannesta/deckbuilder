@@ -21,7 +21,14 @@ describe('Playground Controller', function () {
         });
     }));
 
-    it('should return the prob of cards on time', function(){
-        expect(pController.cardOnTime(2, 7, true)).toEqual('0.56');
+    it('should return the prob of cards on time: 7 fei zhun shi pengpeng', function(){
+        var scenario = {cards:[{count: 2}],  goFirst: true};
+        expect(pController.cardOnTime(scenario, 7)).toEqual('0.56');
     });
+
+    it('should return the prob of cards on time: 2 fei you xiao futou', function(){
+        var scenario = {cards:[{count: 2}], mulligan: 3, goFirst: true};
+        expect(pController.cardOnTime(scenario, 2)).toEqual('0.31');
+    });
+
 });
