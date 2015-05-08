@@ -33,7 +33,7 @@
          * @kind function
          *
          * @param {Object} the senario which contains cards information
-         * @param {number | string} the number of cards left in deck when the combo condition is reached
+         * @param {number | string} the number of cards drawed
          *
          * @returns string - the probability
          */
@@ -46,7 +46,7 @@
             prob = (C(30 - comboCardsCount, cardsDrawed - cardsRequired) * cardsCombination(senario.cards, cardsRequired) +
             C(30 - comboCardsCount, cardsDrawed - (cardsRequired + 1)) * cardsCombination(senario.cards, cardsRequired + 1) +
             C(30 - comboCardsCount, cardsDrawed - (cardsRequired + 2)) * cardsCombination(senario.cards, cardsRequired + 2)) /
-                C(30, cardsDrawed);
+            C(30, cardsDrawed);
 
             return prob.toFixed(2);
         }
@@ -77,14 +77,15 @@
             return total;
         }
 
+        // combinations for selected cards versus actually required cards
         function cardsCombination(cards, selectedCount) {
             var combinations;
             var diff = selectedCount - cards.length;
 
-            if (diff < 0){
+            if (diff < 0) {
                 throw 'Condition is not reached, not enough card selected';
             }
-            combinations = C(cards.length, diff) * Math.pow(2, cards.length-diff);
+            combinations = C(cards.length, diff) * Math.pow(2, cards.length - diff);
             //console.log(combinations);
             return combinations;
         }
