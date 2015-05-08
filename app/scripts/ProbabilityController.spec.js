@@ -32,10 +32,16 @@ describe('Playground Controller', function () {
     });
 
     it('should return the prob of combo success ---> Druid has combo at cost 9', function(){
-        //var scenario = {cards:[{count: 2}, {count: 1}, {count: 1}], goFirst: true};
-        var scenario = {cards:[{count: 2}, {count: 2}], goFirst: true};
-        //var scenario = {cards:[{count: 2}], goFirst: true};       // warrior axe at cost 2
+        //var scenario = {cards:[{count: 2}, {count: 1}, {count: 1}]};
+        var scenario = {cards:[{count: 2}, {count: 2}]};
+        //var scenario = {cards:[{count: 2}]};       // warrior axe at cost 2
         expect(pController.comboSuccess(scenario, 9)).toEqual('0.25');
+    });
+
+    it('should return the prob of combo success ---> Druid has double Rooooar when 15 cards are drawed from the deck', function(){
+        var scenario = {cards:[{count: 2, required: 2}, {count: 2}, {count: 2}]};
+        //var scenario = {cards: [{count: 1}, {count: 1}, {count: 2}, {count: 2, required: 2}]};    // blue dragon ice mage combo
+        expect(pController.comboSuccess(scenario, 15)).toEqual('0.12');
     });
 
 });
