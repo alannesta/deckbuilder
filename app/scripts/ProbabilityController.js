@@ -50,16 +50,17 @@
          * @returns string - the probability
          */
         function comboSuccess(senario, cardsDrawed) {
-            var prob;
+            var prob = 0;
             var comboCardsCount = parseCountFromSenario(senario);
 
             var cardsRequired = senario.cards.length;
 
-            prob = (C(30 - comboCardsCount, cardsDrawed - cardsRequired) * cardsCombination(senario.cards, cardsRequired) +
-            C(30 - comboCardsCount, cardsDrawed - (cardsRequired + 1)) * cardsCombination(senario.cards, cardsRequired + 1) +
-            C(30 - comboCardsCount, cardsDrawed - (cardsRequired + 2)) * cardsCombination(senario.cards, cardsRequired + 2)) /
-            C(30, cardsDrawed);
+            var diff = comboCardsCount - cardsRequired;
 
+            for (var i = 0; i <= diff; i++){
+                prob = prob + C(30 - comboCardsCount, cardsDrawed - (cardsRequired+i)) * cardsCombination(senario.cards, cardsRequired+i);
+            }
+            prob = prob/C(30, cardsDrawed);
             return prob.toFixed(2);
         }
 
@@ -91,13 +92,20 @@
 
         // combinations for selected cards versus actually required cards
         function cardsCombination(cards, selectedCount) {
-            var combinations;
+            var combinations = 1;
+            var count1 = 0;      // count for cards which only have a count of 1 ( @@ )
             var diff = selectedCount - cards.length;
 
             if (diff < 0) {
                 throw 'Condition is not reached, not enough card selected';
             }
-            combinations = C(cards.length, diff) * Math.pow(2, cards.length - diff);
+            cards.forEach(function(card){
+               if (card.count === 1){
+                   count1 ++;
+               }
+            });
+
+            combinations = C(cards.length - count1, diff) * Math.pow(2, cards.length - diff - count1);
             //console.log(combinations);
             return combinations;
         }

@@ -21,17 +21,18 @@ describe('Playground Controller', function () {
         });
     }));
 
-    it('should return the prob of cards on time ---> Hunter lion at cost 6', function(){
-        var scenario = {cards:[{count: 2}],  goFirst: true};
-        expect(pController.cardOnTime(scenario, 6)).toEqual('0.52');
-    });
-
-    it('should return the prob of cards on time ---> Warrior axe at cost 2', function(){
-        var scenario = {cards:[{count: 2}], mulligan: 3, goFirst: true};
-        expect(pController.cardOnTime(scenario, 2)).toEqual('0.47');
-    });
+    //it('should return the prob of cards on time ---> Hunter lion at cost 6', function(){
+    //    var scenario = {cards:[{count: 2}],  goFirst: true};
+    //    expect(pController.cardOnTime(scenario, 6)).toEqual('0.52');
+    //});
+    //
+    //it('should return the prob of cards on time ---> Warrior axe at cost 2', function(){
+    //    var scenario = {cards:[{count: 2}], mulligan: 3, goFirst: true};
+    //    expect(pController.cardOnTime(scenario, 2)).toEqual('0.47');
+    //});
 
     it('should return the prob of combo success ---> Druid has combo at cost 9', function(){
+        //var scenario = {cards:[{count: 2}, {count: 1}, {count: 1}], goFirst: true};
         var scenario = {cards:[{count: 2}, {count: 2}], goFirst: true};
         expect(pController.comboSuccess(scenario, 9)).toEqual('0.25');
     });
