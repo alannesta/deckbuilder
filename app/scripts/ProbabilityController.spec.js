@@ -21,14 +21,19 @@ describe('Playground Controller', function () {
         });
     }));
 
-    it('should return the prob of cards on time: 7 fei zhun shi pengpeng', function(){
+    it('should return the prob of cards on time ---> Hunter lion at cost 6', function(){
         var scenario = {cards:[{count: 2}],  goFirst: true};
-        expect(pController.cardOnTime(scenario, 7)).toEqual('0.56');
+        expect(pController.cardOnTime(scenario, 6)).toEqual('0.52');
     });
 
-    it('should return the prob of cards on time: 2 fei you xiao futou', function(){
+    it('should return the prob of cards on time ---> Warrior axe at cost 2', function(){
         var scenario = {cards:[{count: 2}], mulligan: 3, goFirst: true};
-        expect(pController.cardOnTime(scenario, 2)).toEqual('0.31');
+        expect(pController.cardOnTime(scenario, 2)).toEqual('0.47');
+    });
+
+    it('should return the prob of combo success ---> Druid has combo at cost 9', function(){
+        var scenario = {cards:[{count: 2}, {count: 2}], goFirst: true};
+        expect(pController.comboSuccess(scenario, 9)).toEqual('0.25');
     });
 
 });
