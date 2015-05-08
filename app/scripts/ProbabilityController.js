@@ -1,4 +1,4 @@
-(function () {
+(function() {
     angular
         .module('deckbuilder')
         .controller('ProbabilityController', probabilityController);
@@ -57,10 +57,10 @@
 
             var diff = comboCardsCount - cardsRequired;
 
-            for (var i = 0; i <= diff; i++){
-                prob = prob + C(30 - comboCardsCount, cardsDrawed - (cardsRequired+i)) * cardsCombination(senario.cards, cardsRequired+i);
+            for (var i = 0; i <= diff; i++) {
+                prob = prob + C(30 - comboCardsCount, cardsDrawed - (cardsRequired + i)) * cardsCombination(senario.cards, cardsRequired + i);
             }
-            prob = prob/C(30, cardsDrawed);
+            prob = prob / C(30, cardsDrawed);
             return prob.toFixed(2);
         }
 
@@ -84,7 +84,7 @@
 
         function parseCountFromSenario(senario) {
             var total = 0;
-            senario.cards.forEach(function (card) {
+            senario.cards.forEach(function(card) {
                 total = total + card.count;
             });
             return total;
@@ -99,10 +99,11 @@
             if (diff < 0) {
                 throw 'Condition is not reached, not enough card selected';
             }
-            cards.forEach(function(card){
-               if (card.count === 1){
-                   count1 ++;
-               }
+            cards.forEach(function(card) {
+                // TODO: could consider the "requiredCount" flag in card obj so that we can address senarios when 2 cards are required in a combo
+                if (card.count === 1) {
+                    count1++;
+                }
             });
 
             combinations = C(cards.length - count1, diff) * Math.pow(2, cards.length - diff - count1);
