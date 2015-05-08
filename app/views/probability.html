@@ -1,1 +1,5 @@
-it works!
+<md-content style="height: 500px" layout="column" layout-align="center center">
+    <md-radio-group ng-model="ctrl.option.step1">
+        <md-radio-button ng-repeat = "senario in ctrl.senarioOptions" ng-value="senario.id" class="md-primary">{{senario.description}}</md-radio-button>
+    </md-radio-group>
+</md-content>

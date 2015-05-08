@@ -6,6 +6,18 @@
     function probabilityController(MathUtil) {
         var self = this;
 
+        self.senarioOptions = [
+            {description: "起手天胡系列", id: 1},
+            {description: "combo达成系列", id: 2},
+            {description: "准时系列", id: 3}
+        ];
+
+        self.option = {
+            step1: '',
+            step2: '',
+            step3: ''
+        };
+
         var C = MathUtil.combination;   // alias for MathUtil.combination
         self.cardOnTime = cardOnTime;
         self.comboSuccess = comboSuccess;
