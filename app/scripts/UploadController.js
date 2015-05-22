@@ -1,52 +1,59 @@
-(function(){
+(function() {
 
-  angular
-       .module('deckbuilder')
-       .controller('UploadController', uploadController);
+    angular
+        .module('deckbuilder')
+        .controller('UploadController', uploadController);
 
-  function uploadController($scope){
+    function uploadController($scope) {
 
-      var self = this;
+        var self = this;
 
-      self.step = 1;
-      self.selections = [];
+        self.step = 1;
+        self.selections = [];
 
-      self.save = function(){
+        self.save = function() {
 
-      };
+        };
 
-      $scope.$watch(function(){
-          return self.rarity;
-      }, function(val){
-          if (val) {
-              self.selections.push(val);
-              self.step++;
-          }
-      });
+        self.restart = function() {
+            self.step = 1;
+            self.selections = [];
+        };
 
-      $scope.$watch(function(){
-          return self.class;
-      }, function(val){
-          if (val) {
-              self.selections.push(val);
-              self.step++;
-          }
-      });
+        function forward(val) {
+            self.selections.push(val);
+            self.step++;
+        }
 
-      $scope.$watch(function(){
-          return self.cost;
-      }, function(val){
-          if (val) {
-              self.selections.push(val);
-              self.step++;
-          }
-      });
+        $scope.$watch(function() {
+            return self.rarity;
+        }, function(val) {
+            if (val) {
+                forward(val);
+            }
+        });
 
-      $scope.$watch(function(){
-          return self.selections;
-      }, function(){
-          self.step = self.selections.length + 1;
-      }, true);
+        $scope.$watch(function() {
+            return self.class;
+        }, function(val) {
+            if (val) {
+                forward(val);
+            }
+        });
 
-  }
+        $scope.$watch(function() {
+            return self.cost;
+        }, function(val) {
+            if (val) {
+                forward(val)
+            }
+        });
+
+        $scope.$watch(function() {
+            return self.selections;
+        }, function() {
+            self.step = self.selections.length + 1;
+        }, true);
+
+    }
 })();

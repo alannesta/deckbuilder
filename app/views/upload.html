@@ -34,12 +34,17 @@
             <md-option value="9">9</md-option>
         </md-select>
 
+        <md-button ng-if="ctrl.step === 4" ng-click="ctrl.restart()">Re-select</md-button>
+
         <!--<md-button ng-click="ctrl.save()" class="md-fab">Save</md-button>-->
     </form>
     <div flex></div>
     <div layout="column">
-        <md-chips ng-model="ctrl.selections" placeholder="kaka">
+        <md-chips ng-model="ctrl.selections" placeholder="ka ka" readonly="true">
             <!--<input type="number" ng-model="ctrl.numberBuffer" placeholder="Enter a number">-->
+            <md-chip-template>
+                <span>{{$chip}}</span>
+            </md-chip-template>
         </md-chips>
     </div>
     <div flex></div>
