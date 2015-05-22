@@ -12,6 +12,13 @@
             {description: "准时系列", id: 3}
         ];
 
+        self.storyOptions = {
+            'Druid': [{id: 1, description: '9费有咆哮一套'}, {id: 2, description: '牌库过半(还剩15张)时有一套'}],
+            'Warrior': [{id: 1, description: '先手起手有小斧头'}, {id: 2, description: '9费凑齐民工三连'}],
+            'General': [{id: 1, description: '7费准时砰砰博士'}, {id: 2, description: '砰砰准时被王牌枪毙'}]
+        };
+
+
         self.option = {
             step1: '',
             step2: '',

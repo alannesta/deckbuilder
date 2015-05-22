@@ -8,8 +8,9 @@
 
       var firebase = new Firebase(FIREBASE.BASE_URL);
       var self = this;
+      self.selections = [1, 2, 3, 4];
       self.card = {};
-      document.getElementById('image-upload').addEventListener('change', handleFileSelect);
+      //document.getElementById('image-upload').addEventListener('change', handleFileSelect);
 
       function handleFileSelect(evt) {
           var file = evt.target.files[0];

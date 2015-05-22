@@ -36,6 +36,7 @@ describe('Playground Controller', function () {
         var scenario = {cards:[{count: 2}, {count: 2}]};
         //var scenario = {cards:[{count: 2}]};       // warrior axe at cost 2
         expect(pController.comboSuccess(scenario, 9)).toEqual('0.25');
+        //console.log('Druid has combo: ' + pController.comboSuccess(scenario, 15));
     });
 
     it('should return the prob of combo success ---> Druid has double Rooooar when 15 cards are drawed from the deck', function(){
