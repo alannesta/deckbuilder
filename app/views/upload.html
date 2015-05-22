@@ -1,15 +1,9 @@
 <md-content md-theme="docs-dark" class="md-padding" layout="column" layout-padding
             layout-align="center center" style="height:100%">
     <div flex></div>
-    <div layout="column">
-        <md-chips ng-model="ctrl.selections" placeholder="kaka">
-            <!--<input type="number" ng-model="ctrl.numberBuffer" placeholder="Enter a number">-->
-        </md-chips>
-    </div>
-    <div flex></div>
-    <form name="uploadForm" layout="row" layout-sm="column" layout-margin layout-align="center center">
+    <form name="uploadForm" layout="row" layout-sm="column" layout-margin layout-align="center center" style="height:300px">
         <!--<md-input-container flex>-->
-        <md-select placeholder="Rarity" ng-model="ctrl.card.rarity" flex>
+        <md-select ng-if="ctrl.step === 1" placeholder="Rarity" ng-model="ctrl.rarity" flex>
             <md-option value="Normal">Normal</md-option>
             <md-option value="Epic">Epic</md-option>
             <md-option value="Rare">Rare</md-option>
@@ -17,7 +11,7 @@
         </md-select>
         <!--</md-input-container>-->
 
-        <md-select placeholder="Class" ng-model="ctrl.card.class" flex>
+        <md-select ng-if="ctrl.step === 2" placeholder="Class" ng-model="ctrl.class" flex>
             <md-option value="Druid">Druid</md-option>
             <md-option value="Priest">Priest</md-option>
             <md-option value="Shamman">Shamman</md-option>
@@ -28,7 +22,7 @@
             <md-option value="Paladin">Paladin</md-option>
         </md-select>
 
-        <md-select placeholder="Cost" ng-model="ctrl.card.cost" flex>
+        <md-select ng-if="ctrl.step === 3" placeholder="Cost" ng-model="ctrl.cost" flex>
             <md-option value="1">1</md-option>
             <md-option value="2">2</md-option>
             <md-option value="3">3</md-option>
@@ -40,7 +34,13 @@
             <md-option value="9">9</md-option>
         </md-select>
 
-        <md-button ng-click="ctrl.save()" class="md-fab">Save</md-button>
+        <!--<md-button ng-click="ctrl.save()" class="md-fab">Save</md-button>-->
     </form>
+    <div flex></div>
+    <div layout="column">
+        <md-chips ng-model="ctrl.selections" placeholder="kaka">
+            <!--<input type="number" ng-model="ctrl.numberBuffer" placeholder="Enter a number">-->
+        </md-chips>
+    </div>
     <div flex></div>
 </md-content>
