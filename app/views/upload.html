@@ -2,14 +2,14 @@
             layout-align="center center" style="height:100%">
     <div flex></div>
     <form name="uploadForm" layout="row" layout-sm="column" layout-margin layout-align="center center" style="height:300px">
-        <!--<md-input-container flex>-->
-        <md-select ng-if="ctrl.step === 1" placeholder="Rarity" ng-model="ctrl.rarity" flex>
-            <md-option value="Normal">Normal</md-option>
-            <md-option value="Epic">Epic</md-option>
-            <md-option value="Rare">Rare</md-option>
-            <md-option value="Legendary">Legendary</md-option>
-        </md-select>
-        <!--</md-input-container>-->
+        <!--<md-select ng-if="ctrl.step === 1" placeholder="Rarity" ng-model="ctrl.rarity" flex>-->
+            <!--<md-option value="Normal">Normal</md-option>-->
+            <!--<md-option value="Epic">Epic</md-option>-->
+            <!--<md-option value="Rare">Rare</md-option>-->
+            <!--<md-option value="Legendary">Legendary</md-option>-->
+        <!--</md-select>-->
+
+        <card-selector ng-if="ctrl.step === 1" ng-model="ctrl.rarity"></card-selector>
 
         <md-select ng-if="ctrl.step === 2" placeholder="Class" ng-model="ctrl.class" flex>
             <md-option value="Druid">Druid</md-option>
