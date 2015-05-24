@@ -9,7 +9,7 @@
             <!--<md-option value="Legendary">Legendary</md-option>-->
         <!--</md-select>-->
 
-        <card-selector ng-if="ctrl.step === 1" ng-model="ctrl.rarity"></card-selector>
+        <card-selector ng-if="ctrl.step === 1" ng-model="ctrl.senario" on-finish="ctrl.forward()"></card-selector>
 
         <md-select ng-if="ctrl.step === 2" placeholder="Class" ng-model="ctrl.class" flex>
             <md-option value="Druid">Druid</md-option>

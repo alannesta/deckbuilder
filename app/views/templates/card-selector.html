@@ -1,6 +1,13 @@
-<md-select ng-model="card" >
+<md-select ng-model="card" placeholder="Quality">
     <md-option value="Normal">Normal</md-option>
     <md-option value="Epic">Epic</md-option>
     <md-option value="Rare">Rare</md-option>
     <md-option value="Legendary">Legendary</md-option>
 </md-select>
+<md-select ng-model="count" placeholder="Count">
+    <md-option value="1">Normal</md-option>
+    <md-option value="2">Epic</md-option>
+</md-select>
+<div>
+    <md-button ng-click="finish()">Done</md-button>
+</div>

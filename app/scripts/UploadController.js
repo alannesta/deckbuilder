@@ -9,7 +9,9 @@
         var self = this;
 
         self.step = 1;
-        self.selections = [];
+        self.selections = [];   // chip collection
+        self.senario = [];      // card combinations
+        self.forward = forward;
 
         self.save = function() {
 
@@ -18,9 +20,13 @@
         self.restart = function() {
             self.step = 1;
             self.selections = [];
+            self.senario = [];
+            self.class = null;
+            self.cost = null;
         };
 
         function forward(val) {
+            console.log('forward?');
             self.selections.push(val);
             self.step++;
         }
