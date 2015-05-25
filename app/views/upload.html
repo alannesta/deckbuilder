@@ -9,7 +9,7 @@
             <!--<md-option value="Legendary">Legendary</md-option>-->
         <!--</md-select>-->
 
-        <card-selector ng-if="ctrl.step === 1" ng-model="ctrl.senario" on-finish="ctrl.forward()"></card-selector>
+        <card-selector ng-if="ctrl.step === 1" ng-model="ctrl.senarios" on-finish="ctrl.forward(val)"></card-selector>
 
         <md-select ng-if="ctrl.step === 2" placeholder="Class" ng-model="ctrl.class" flex>
             <md-option value="Druid">Druid</md-option>
@@ -43,7 +43,8 @@
         <md-chips ng-model="ctrl.selections" placeholder="ka ka" readonly="true">
             <!--<input type="number" ng-model="ctrl.numberBuffer" placeholder="Enter a number">-->
             <md-chip-template>
-                <span>{{$chip}}</span>
+                <span>{{$chip[0].name}} * {{$chip[0].count}}</span>
+                <!--<span ng-if="$chip.name===undefined">{{$chip}}</span>-->
             </md-chip-template>
         </md-chips>
     </div>

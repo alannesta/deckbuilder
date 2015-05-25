@@ -10,7 +10,7 @@
 
         self.step = 1;
         self.selections = [];   // chip collection
-        self.senario = [];      // card combinations
+        self.senarios = [];      // card combinations
         self.forward = forward;
 
         self.save = function() {

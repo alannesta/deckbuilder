@@ -2,18 +2,26 @@ angular.module('deckbuilder').directive('cardSelector', function() {
     return {
         restrict: 'E',
         scope: {
-          senario: '=ngModel',
+          senarios: '=ngModel',
           onFinish: '&'
         },
         templateUrl: 'views/templates/card-selector.html',
         link: function(scope, element, attrs) {
+
+            scope.senarios = [];
+            scope.senarios.push({});
+
             scope.finish = function() {
-                //console.log(scope.onFinish);
-                var name = $('#set1 md-select')[0].val;
-                var count = $('#set1 md-select')[1].val;
-                scope.senario.push({name: name, count: count});
-                scope.onFinish();
+                scope.onFinish({val: scope.senarios});
             };
+
+            scope.add = function() {
+                scope.senarios.push({});
+            };
+
+            scope.delete = function(item) {
+                scope.senarios.splice(scope.senarios.indexOf(item), 1);
+            }
         }
     }
 })
