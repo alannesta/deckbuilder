@@ -43,7 +43,14 @@
         <md-chips ng-model="ctrl.selections" placeholder="ka ka" readonly="true">
             <!--<input type="number" ng-model="ctrl.numberBuffer" placeholder="Enter a number">-->
             <md-chip-template>
-                <span>{{$chip[0].name}} * {{$chip[0].count}}</span>
+                <div ng-if="ctrl.isArray($chip)" ng-repeat="chip in $chip">
+                    {{chip.name}} * {{chip.count}}
+                </div>
+
+                <span ng-if="!ctrl.isArray($chip)">
+                    {{$chip}}
+                </span>
+
                 <!--<span ng-if="$chip.name===undefined">{{$chip}}</span>-->
             </md-chip-template>
         </md-chips>

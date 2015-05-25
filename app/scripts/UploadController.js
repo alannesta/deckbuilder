@@ -17,6 +17,10 @@
 
         };
 
+        self.isArray = function(chip) {
+          return chip instanceof Array;
+        };
+
         self.restart = function() {
             self.step = 1;
             self.selections = [];
